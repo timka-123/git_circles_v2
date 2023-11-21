@@ -1,15 +1,16 @@
 import sys
 from random import randint
 
-from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
 from PyQt5.QtGui import QPainter, QColor
 
+from design import Ui_MainWindow
 
-class Drawer(QMainWindow):
+
+class Drawer(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("UI.ui", self)
+        self.setupUi(self)
         # self.setGeometry(300, 300, 300, 300)
         self.setWindowTitle("Circle drawer")
         self.pushButton.clicked.connect(self.draw_circle)
@@ -24,7 +25,7 @@ class Drawer(QMainWindow):
         qp.end()
 
     def drawww(self, qp):
-        qp.setBrush(QColor(255, 255, 204))
+        qp.setBrush(QColor(randint(1, 255), randint(1, 255), randint(1, 255)))
         a = randint(50, 150)
         x = randint(0, 50)
         qp.drawEllipse(x, x, a, a)
